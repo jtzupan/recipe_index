@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="container">
+      <h2>Welcome!</h2>
+      <p>On this page you can upload recipes.  Once you name your recipe, you can select any optional descriptors in addition
+      to the text from the recipe.  Finally, select the image of the recipe and hit "Submit".</p>
+      <p>Note: only .pngs, .jpgs, and .jpegs file types will be accepted.  PDFs cannot be uploaded.</p>
+      <form action = "{{ url_for('main.add_recipe') }}" method = "POST"
+         enctype = "multipart/form-data">
+          {{ form.hidden_tag() }}
+          <p>
+              {{ form.recipe_name.label }} <br>
+              {{ form.recipe_name(size=32) }}
+          </p>
+          <p>
+              {{ form.cuisine_type.label }} <br>
+              {{ form.cuisine_type(size=32) }}
+          </p>
+          <p>
+              {{ form.optional_description.label }} <br>
+              {{ form.optional_description(size=32) }}
+          </p>
+          <p>
+              <input type = "file" name = "file" />
+          </p>
+         <p>
+             <input type = "submit"/>
+         </p>
+
+      </form>
+</div>
+{% endblock %}
